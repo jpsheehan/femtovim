@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test": "mocha --require ts-node/register --extension ['ts'] test/*.ts"
+    "test": "mocha --require ts-node/register --extension ['ts'] test/*.ts",
+    "test:watch": "mocha --require ts-node/register --watch --watch-files **/*.ts --extension ['ts'] test/*.ts"
   },
   "devDependencies": {
     "@types/chai": "^4.3.0",
