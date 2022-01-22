@@ -1,6 +1,6 @@
 import { describe, it } from "mocha"
 import { assert } from "chai";
-import { findEndOfWordForward } from "../src/EditorCore"
+import { findStartOfWordForward, findEndOfWordForward } from "../src/EditorCore"
 
 const exampleSentence = "The quick brown fox jumps over the lazy dog";
 const emptySentence = "";
@@ -37,6 +37,35 @@ describe('findEndOfWordForward', () => {
         assert.equal(findEndOfWordForward(multilineSentence, 21), 26);
         assert.equal(findEndOfWordForward(multilineSentence, 44), 45);
         assert.equal(findEndOfWordForward(multilineSentence, 45), 53);
-    })
+    });
 
 });
+
+describe('findStartOfWordForward', () => {
+
+    it('should return the same index for empty strings', () => {
+        assert.equal(findStartOfWordForward(emptySentence, 0), 0);
+        assert.equal(findStartOfWordForward(exampleSentence, 42), 42);
+    })
+
+    it('should return the same index when there are no more starts of words', () => {
+        assert.equal(findStartOfWordForward(exampleSentence, 41), 41);
+        assert.equal(findStartOfWordForward(exampleSentence, 40), 40);
+    });
+
+    it('should return the correct index when there are more starts of words', () => {
+        assert.equal(findStartOfWordForward(exampleSentence, 0), 4);
+        assert.equal(findStartOfWordForward(exampleSentence, 1), 4);
+        assert.equal(findStartOfWordForward(exampleSentence, 2), 4);
+        assert.equal(findStartOfWordForward(exampleSentence, 3), 4);
+        assert.equal(findStartOfWordForward(exampleSentence, 4), 10);
+
+        assert.equal(findStartOfWordForward(spacedSentence, 3), 6);
+        assert.equal(findStartOfWordForward(spacedSentence, 4), 6);
+        assert.equal(findStartOfWordForward(spacedSentence, 5), 6);
+    });
+
+    it('should return the correct index when there are newlines', () => {
+        assert.equal(findStartOfWordForward(multilineSentence, 20), 23)
+    })
+})

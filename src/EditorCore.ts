@@ -6,10 +6,24 @@
  * @param idx The current cursor index in the string.
  * @returns The new cursor index.
  */
-function findStartOfWordForward(str: string, idx: number): number {
+export function findStartOfWordForward(str: string, idx: number): number {
+    const strFromIdx = str.substring(idx);
+    if (strFromIdx.length === 0) {
+        return idx;
+    }
 
+    const idxOfNextNonWord = strFromIdx.search(/\W/);
+    if (idxOfNextNonWord === -1) {
+        return idx;
+    }
+    const strFromNextNonWord = strFromIdx.substring(idxOfNextNonWord);
 
-    return -1;
+    const idxOfNextWord = strFromNextNonWord.search(/\w/);
+    if (idxOfNextWord === -1) {
+        return idx;
+    }
+
+    return idx + idxOfNextNonWord + idxOfNextWord;
 }
 
 /**
