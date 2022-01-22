@@ -123,3 +123,11 @@ export function findEndOfWordBackward(str: string, idx: number): number {
 
     return idx;
 }
+
+export function findCharForward(str: string, idx: number, c: string): number {
+    throw new Error("Not implemented")
+}
+
+export function findCharBackward(str: string, idx: number, c: string): number {
+    throw new Error("Not implemented")
+}
