@@ -1,6 +1,6 @@
 import { describe, it } from "mocha"
 import { assert } from "chai";
-import { findStartOfWordForward, findEndOfWordForward } from "../src/EditorCore"
+import { findStartOfWordForward, findEndOfWordForward } from "./editor_core"
 
 const exampleSentence = "The quick brown fox jumps over the lazy dog";
 const emptySentence = "";
